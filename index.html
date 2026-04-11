@@ -108,8 +108,9 @@ h2 span{color:#8b2500;font-style:italic;}
 .lstrip-lbl{font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(92,74,62,0.45);margin-bottom:1rem;}
 .lstrip-row{display:flex;gap:1.4rem;align-items:center;flex-wrap:wrap;}
 .litem{display:flex;flex-direction:column;align-items:center;gap:0.45rem;cursor:default;}
-.limg{width:60px;height:60px;border-radius:16px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,0.12);transition:transform 0.22s,box-shadow 0.22s;display:flex;align-items:center;justify-content:center;}
-.limg img{width:100%;height:100%;object-fit:cover;display:block;}
+.limg{width:80px;height:80px;border-radius:18px;overflow:hidden;box-shadow:0 3px 14px rgba(0,0,0,0.14);transition:transform 0.22s,box-shadow 0.22s;display:flex;align-items:center;justify-content:center;}
+.limg img{width:100%;height:100%;object-fit:contain;display:block;}
+.litem span{font-size:0.68rem;}
 .litem:hover .limg{transform:translateY(-4px);box-shadow:0 8px 22px rgba(0,0,0,0.16);}
 .litem span{font-size:0.62rem;color:var(--mu);letter-spacing:0.04em;white-space:nowrap;}
 
@@ -242,6 +243,9 @@ h2 span{color:#8b2500;font-style:italic;}
 .prcards{display:flex;flex-direction:column;gap:0.7rem;margin-top:1.3rem;}
 .prc{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:0.8rem 1.1rem;display:flex;align-items:center;gap:0.8rem;transition:transform 0.3s,box-shadow 0.3s;}
 .prc:hover{transform:translateX(4px);box-shadow:0 4px 14px var(--sh);}
+a.prc::after{content:"↗";font-size:0.7rem;margin-left:auto;color:var(--ac);opacity:0;transition:opacity 0.2s;padding-left:0.5rem;flex-shrink:0;}
+a.prc:hover::after{opacity:1;}
+a.prc{display:flex;}
 .prico{font-size:1.1rem;flex-shrink:0;}
 .prlbl{font-size:0.67rem;color:#8b3a0f;text-transform:uppercase;letter-spacing:0.08em;font-weight:500;}
 .prval{font-size:0.88rem;color:#1a0f08;}
@@ -278,10 +282,8 @@ h2 span{color:#8b2500;font-style:italic;}
   <ul class="mnav">
     <li><a href="#" class="active" data-pg="0">&#127968; Home</a></li>
     <li><a href="#" data-pg="1">&#128100; About</a></li>
-    <li><a href="#" data-pg="2">&#128188; Experience</a></li>
-    <li><a href="#" data-pg="3">&#128736; Projects</a></li>
-    <li><a href="#" data-pg="4">&#128161; Skills</a></li>
-    <li><a href="#" data-pg="5">&#9993; Contact</a></li>
+    <li><a href="#" data-pg="2">&#128736; Projects</a></li>
+    <li><a href="#" data-pg="3">&#9993; Contact</a></li>
   </ul>
   <div class="mfoot"><a href="https://github.com/sarayukochar" target="_blank">github.com/sarayukochar</a><br><span style="margin-top:0.3rem;display:block;">&copy; 2026 Sarayu Kocharlakota</span></div>
 </div>
@@ -291,8 +293,6 @@ h2 span{color:#8b2500;font-style:italic;}
   <button class="dot" data-pg="1"></button>
   <button class="dot" data-pg="2"></button>
   <button class="dot" data-pg="3"></button>
-  <button class="dot" data-pg="4"></button>
-  <button class="dot" data-pg="5"></button>
 </div>
 
 <div id="wrap">
@@ -315,7 +315,7 @@ h2 span{color:#8b2500;font-style:italic;}
         <div class="lstrip-row">
           <div class="litem" title="Leap AI Technologies">
             <div class="limg" style="background:#000;">
-              <img src="data:image/jpeg;base64,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" alt="Leap AI"/>
+              <img src="data:image/jpeg;base64,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" alt="Leap AI"/>
             </div>
             <span>Leap AI</span>
           </div>
@@ -351,69 +351,61 @@ h2 span{color:#8b2500;font-style:italic;}
     </div>
   </div>
   <span class="nhint">use arrows or keyboard</span>
-  <div class="pnum">01 / 06</div>
+  <div class="pnum">01 / 04</div>
   <button class="arr anxt" id="a1n">&#8594;</button>
 </section>
 
 <!-- ════ P2: ABOUT ════ -->
-<section class="page" id="p2">
+<section class="page" id="p2" style="align-items:flex-start;padding-top:5rem;overflow-y:auto;overflow-x:hidden;">
   <span class="plbl">About Me</span>
-  <div class="ablayout">
-    <div>
-      <h2 class="fu">Engineer, <span>researcher,</span> builder</h2>
-      <p class="ap fu" data-d="1">I'm a Computer Engineering student at <strong>UC Santa Cruz</strong>, with hands-on experience in generative AI, RAG systems, and data-driven strategy.</p>
-      <p class="ap fu" data-d="2">From leading a consulting team for an ed-tech startup to training LLM pipelines at the <strong>Tech4Good Lab</strong>, I love working where technology meets real-world problems.</p>
-      <p class="ap fu" data-d="3">Outside research, I run a Udemy programming course, founded <strong>Project Vendigo</strong> to address food insecurity, and create content on YouTube &amp; Spotify.</p>
+  <div style="max-width:1080px;width:100%;">
+
+    <!-- TOP: Bio + stat cards -->
+    <div class="ablayout" style="margin-bottom:1.8rem;">
+      <div>
+        <h2 class="fu">Engineer, <span>researcher,</span> builder</h2>
+        <p class="ap fu" data-d="1">I'm a Computer Engineering student at <strong>UC Santa Cruz</strong>, with hands-on experience in generative AI, RAG systems, and data-driven strategy.</p>
+        <p class="ap fu" data-d="2">From leading a consulting team for an ed-tech startup to training LLM pipelines at the <strong>Tech4Good Lab</strong>, I love working where technology meets real-world problems.</p>
+        <p class="ap fu" data-d="3">Outside research, I run a Udemy programming course, founded <strong>Project Vendigo</strong> to address food insecurity, and create content on YouTube &amp; Spotify.</p>
+      </div>
+      <div class="sgrid fu" data-d="2">
+        <div class="scard"><div class="snum">1,760</div><div class="slbl">Udemy Students</div></div>
+        <div class="scard"><div class="snum">800+</div><div class="slbl">Students Fed (Vendigo)</div></div>
+        <div class="scard"><div class="snum">3+</div><div class="slbl">AI Research Projects</div></div>
+        <div class="scard"><div class="snum">3</div><div class="slbl">Awards &amp; Features</div></div>
+      </div>
     </div>
-    <div class="sgrid fu" data-d="2">
-      <div class="scard"><div class="snum">1,760</div><div class="slbl">Udemy Students</div></div>
-      <div class="scard"><div class="snum">800+</div><div class="slbl">Students Fed (Vendigo)</div></div>
-      <div class="scard"><div class="snum">3+</div><div class="slbl">AI Research Projects</div></div>
-      <div class="scard"><div class="snum">3</div><div class="slbl">Awards &amp; Features</div></div>
+
+    <!-- SKILLS SECTION -->
+    <div class="fu" data-d="3" style="margin-bottom:1.6rem;">
+      <h2 style="margin-bottom:1rem;font-size:1.5rem;">Technical <span>toolkit</span></h2>
+      <div class="skgrid">
+        <div class="skg"><div class="skn">AI / ML</div><div class="skpills"><span class="skp">RAG Pipelines</span><span class="skp">Prompt Eng.</span><span class="skp">LLM Eval</span><span class="skp">Embeddings</span></div></div>
+        <div class="skg"><div class="skn">Programming</div><div class="skpills"><span class="skp">Python</span><span class="skp">R / RStudio</span><span class="skp">HTML/CSS/JS</span><span class="skp">Colab</span></div></div>
+        <div class="skg"><div class="skn">Data</div><div class="skpills"><span class="skp">Visualization</span><span class="skp">Analysis</span><span class="skp">SWOT</span></div></div>
+        <div class="skg"><div class="skn">Product &amp; Mobile</div><div class="skpills"><span class="skp">UX Design</span><span class="skp">iOS Dev</span><span class="skp">System Prompts</span></div></div>
+      </div>
     </div>
+
+    <!-- PRESENCE CARDS -->
+    <div class="fu" data-d="4">
+      <h2 style="margin-bottom:1rem;font-size:1.5rem;">Social <span>presence</span></h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:0.7rem;">
+        <a href="https://hackhayward.com" target="_blank" class="prc prcawd" style="text-decoration:none;"><span class="prico">&#127942;</span><div><div class="prlbl">Awards &amp; Press</div><div class="prval">Best UI/UX · HackHayward 2026 &nbsp;·&nbsp; Point of Light Award</div></div></a>
+        <a href="https://apps.apple.com/us/app/my-feelings/id1659292375" target="_blank" class="prc" style="text-decoration:none;"><span class="prico">&#63743;</span><div><div class="prlbl">App Store</div><div class="prval">My Feelings! — Emotion Tracker App</div></div></a>
+        <a href="https://www.cbsnews.com/losangeles/video/project-vendigo-a-free-vending-machine-initiative-serving-those-in-need/" target="_blank" class="prc" style="text-decoration:none;"><span class="prico">&#128250;</span><div><div class="prlbl">CBS News Los Angeles</div><div class="prval">Project Vendigo — Featured News Story</div></div></a>
+        <a href="https://www.udemy.com/course/progamming-fundamentals-for-kids-beginners-guide/?srsltid=AfmBOorujru_5SZ83NQ0X0To5lJ0tivlXXbBMj5oAOhsHskEirXr3qTE" target="_blank" class="prc" style="text-decoration:none;"><span class="prico">&#127891;</span><div><div class="prlbl">Udemy</div><div class="prval">1,760 students · Programming Fundamentals</div></div></a>
+        <a href="https://www.youtube.com/@sarayukochar" target="_blank" class="prc" style="text-decoration:none;"><span class="prico">&#9654;&#65039;</span><div><div class="prlbl">YouTube</div><div class="prval">@sarayukochar</div></div></a>
+        <a href="https://open.spotify.com/search/Sarayu%20Kochar" target="_blank" class="prc" style="text-decoration:none;"><span class="prico">&#127897;&#65039;</span><div><div class="prlbl">Spotify Podcast</div><div class="prval">Sarayu Kochar</div></div></a>
+      </div>
+    </div>
+
   </div>
-  <div class="pnum">02 / 06</div>
+  <div class="pnum">02 / 04</div>
   <button class="arr aprv" id="a2p">&#8592;</button>
   <button class="arr anxt" id="a2n">&#8594;</button>
 </section>
 
-<!-- ════ P3: EXPERIENCE ════ -->
-<section class="page" id="p3">
-  <span class="plbl">Experience</span>
-  <div class="explayout">
-    <h2 style="margin-bottom:1.4rem;">Where I've <span>made things</span></h2>
-    <div class="tl">
-      <div class="ti fu"><div class="tdot"></div>
-        <div class="tmeta"><span class="trole">Summer Intern — SAVAS AI Chatbot</span><span class="tdate">Jun–Aug 2025</span></div>
-        <div class="tco">Leap AI Technologies, Inc.</div>
-        <ul class="tpts"><li>Enhanced UI of an AI web app with advanced CSS theming and multi-theme support</li><li>Optimized responsive cross-browser layouts for seamless multi-device experience</li></ul>
-      </div>
-      <div class="ti fu" data-d="1"><div class="tdot"></div>
-        <div class="tmeta"><span class="trole">GenAI Researcher — Community RAG Chatbot</span><span class="tdate">Dec 2024–Present</span></div>
-        <div class="tco">UCSC Tech4Good Lab</div>
-        <ul class="tpts"><li>Led development of a UCSC-specific AI assistant for student navigation &amp; wellbeing</li><li>Built RAG pipelines using vector embeddings, curated datasets, and evaluation metrics</li></ul>
-      </div>
-      <div class="ti fu" data-d="2"><div class="tdot"></div>
-        <div class="tmeta"><span class="trole">GenAI Researcher — LLM Optimization</span><span class="tdate">Jun 2025–Present</span></div>
-        <div class="tco">UCSC Tech4Good Lab (Prof. David Lee)</div>
-        <ul class="tpts"><li>Designed prompt engineering strategies benchmarking GPT, Gemini, and Bolt</li><li>Enhanced RAG pipelines to ingest podcast transcripts</li></ul>
-      </div>
-      <div class="ti fu" data-d="3"><div class="tdot"></div>
-        <div class="tmeta"><span class="trole">Project Manager — Gradxiety</span><span class="tdate">Nov 2024–May 2025</span></div>
-        <div class="tco">Gesher Consulting Group</div>
-        <ul class="tpts"><li>Led 4-member team delivering marketing strategy for a career-dev startup</li><li>Conducted SWOT analysis; delivered data-backed reports and presentations</li></ul>
-      </div>
-      <div class="ti fu" data-d="4"><div class="tdot"></div>
-        <div class="tmeta"><span class="trole">Smart City Lead &amp; Founder / Data Analyst</span><span class="tdate">2022–Present</span></div>
-        <div class="tco">LA Metro TCAP &nbsp;·&nbsp; Project Vendigo</div>
-        <ul class="tpts"><li>Led 15-person team designing a smart city for LA Metro; analyzed transportation &amp; energy data</li><li>Founded Vendigo — data-driven vending initiative helping 800+ LAUSD students</li></ul>
-      </div>
-    </div>
-  </div>
-  <div class="pnum">03 / 06</div>
-  <button class="arr aprv" id="a3p">&#8592;</button>
-  <button class="arr anxt" id="a3n">&#8594;</button>
-</section>
 
 <!-- ════ P4: PROJECTS ════ -->
 <section class="page" id="p4">
@@ -594,39 +586,11 @@ h2 span{color:#8b2500;font-style:italic;}
       </div>
     </div>
   </div>
-  <div class="pnum">04 / 06</div>
+  <div class="pnum">03 / 04</div>
   <button class="arr aprv" id="a4p">&#8592;</button>
   <button class="arr anxt" id="a4n">&#8594;</button>
 </section>
 
-<!-- ════ P6: SKILLS ════ -->
-<section class="page" id="p6b">
-  <span class="plbl">Skills &amp; Presence</span>
-  <div class="splayout">
-    <div>
-      <h2>Technical <span>toolkit</span></h2>
-      <div class="skgrid">
-        <div class="skg fu"><div class="skn">AI / ML</div><div class="skpills"><span class="skp">RAG Pipelines</span><span class="skp">Prompt Eng.</span><span class="skp">LLM Eval</span><span class="skp">Embeddings</span></div></div>
-        <div class="skg fu" data-d="1"><div class="skn">Programming</div><div class="skpills"><span class="skp">Python</span><span class="skp">R / RStudio</span><span class="skp">HTML/CSS/JS</span><span class="skp">Colab</span></div></div>
-        <div class="skg fu" data-d="2"><div class="skn">Data</div><div class="skpills"><span class="skp">Visualization</span><span class="skp">Analysis</span><span class="skp">SWOT</span></div></div>
-        <div class="skg fu" data-d="3"><div class="skn">Product &amp; Mobile</div><div class="skpills"><span class="skp">UX Design</span><span class="skp">iOS Dev</span><span class="skp">System Prompts</span></div></div>
-      </div>
-    </div>
-    <div>
-      <h2>Social <span>presence</span></h2>
-      <div class="prcards">
-        <div class="prc prcawd fu"><span class="prico">&#127942;</span><div><div class="prlbl">Awards &amp; Press</div><div class="prval">Best UI/UX · HackHayward 2026 &nbsp;·&nbsp; Point of Light · KCAL &amp; CBS News</div></div></div>
-        <div class="prc fu" data-d="1"><span class="prico">&#63743;</span><div><div class="prlbl">App Store</div><div class="prval">My Feelings! — Emotion Tracker</div></div></div>
-        <div class="prc fu" data-d="2"><span class="prico">&#127891;</span><div><div class="prlbl">Udemy</div><div class="prval">1,760 students · Programming Fundamentals</div></div></div>
-        <div class="prc fu" data-d="3"><span class="prico">&#9654;&#65039;</span><div><div class="prlbl">YouTube</div><div class="prval">@sarayukochar</div></div></div>
-        <div class="prc fu" data-d="4"><span class="prico">&#127897;&#65039;</span><div><div class="prlbl">Spotify Podcast</div><div class="prval">Sarayu Kochar</div></div></div>
-      </div>
-    </div>
-  </div>
-  <div class="pnum">05 / 06</div>
-  <button class="arr aprv" id="a6p">&#8592;</button>
-  <button class="arr anxt" id="a6n">&#8594;</button>
-</section>
 
 <!-- ════ P7: CONTACT ════ -->
 <section class="page" id="p7">
@@ -634,18 +598,16 @@ h2 span{color:#8b2500;font-style:italic;}
   <div class="ctwrap">
     <h2 class="fu" data-d="1">Contact <span>Me!</span></h2>
     <p class="cttag fu" data-d="1">Let's build something together.</p>
-    <p class="ctbio fu" data-d="2">Actively looking for internships in product, data, and AI-focused roles. Whether you have an opportunity or just want to connect — I'd love to hear from you.</p>
+    <p class="ctbio fu" data-d="2">Whether you want to collaborate on a project, discuss ideas, or just say hello — I'm always happy to connect. Reach out and let's create something meaningful.</p>
     <div class="ctgrid fu" data-d="3">
-      <a href="/cdn-cgi/l/email-protection#5f2c3e2d3e262a7134303c373e2d333e34302b3e1f38323e3633713c3032" class="ctlink">&#9993;&#65039; <span class="__cf_email__" data-cfemail="087b697a69717d2663676b60697a646963677c69486f65696164266b6765">[email&#160;protected]</span></a>
+      <a href="mailto:sarayu.kocharlakota@gmail.com" class="ctlink">&#9993;&#65039; sarayu.kocharlakota@gmail.com</a>
       <a href="https://www.linkedin.com/in/sarayu-k-1290a826a/" target="_blank" class="ctlink">&#128188; LinkedIn Profile</a>
       <a href="https://github.com/sarayukochar" target="_blank" class="ctlink">&#128025; github.com/sarayukochar</a>
       <a href="https://www.youtube.com/@sarayukochar" target="_blank" class="ctlink">&#9654;&#65039; YouTube Channel</a>
-      <a href="https://apps.apple.com/us/app/my-feelings/id1659292375" target="_blank" class="ctlink">&#63743; My Feelings! App</a>
-      <a href="https://www.cbsnews.com/losangeles/video/project-vendigo-a-free-vending-machine-initiative-serving-those-in-need/" target="_blank" class="ctlink">&#128250; CBS News Feature</a>
     </div>
     <p class="ctnote fu" data-d="4">Built with HTML &nbsp;·&nbsp; Hosted on GitHub Pages &nbsp;·&nbsp; &copy; 2026 Sarayu Kocharlakota</p>
   </div>
-  <div class="pnum">06 / 06</div>
+  <div class="pnum">04 / 04</div>
   <button class="arr aprv" id="a7p">&#8592;</button>
 </section>
 
@@ -686,10 +648,10 @@ h2 span{color:#8b2500;font-style:italic;}
   });
   dots.forEach(function(d){d.addEventListener('click',function(){goTo(parseInt(d.getAttribute('data-pg')));});});
 
-  document.getElementById('btnp').addEventListener('click',function(e){e.preventDefault();goTo(3);});
-  document.getElementById('btnc').addEventListener('click',function(e){e.preventDefault();goTo(5);});
+  document.getElementById('btnp').addEventListener('click',function(e){e.preventDefault();goTo(2);});
+  document.getElementById('btnc').addEventListener('click',function(e){e.preventDefault();goTo(3);});
 
-  var arrows={'a1n':1,'a2p':0,'a2n':2,'a3p':1,'a3n':3,'a4p':2,'a4n':4,'a6p':3,'a6n':5,'a7p':4};
+  var arrows={'a1n':1,'a2p':0,'a2n':2,'a4p':1,'a4n':3,'a7p':2};
   Object.keys(arrows).forEach(function(id){
     var el=document.getElementById(id);
     if(el) el.addEventListener('click',function(){goTo(arrows[id]);});
