@@ -723,6 +723,7 @@
 </div>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(function() {
   var wrap = document.getElementById('wrap');
   var pages = document.querySelectorAll('.page');
   var dots = document.querySelectorAll('.dot');
@@ -743,13 +744,15 @@
 
   function revealPage(n) {
     var els = pages[n].querySelectorAll('.fu:not(.in)');
-    els.forEach(function(el) { setTimeout(function() { el.classList.add('in'); }, 50); });
+    els.forEach(function(el) {
+      setTimeout(function() { el.classList.add('in'); }, 50);
+    });
   }
 
-  function toggleMenu() {
-    var open = menuPanel.classList.toggle('open');
-    menuBtn.classList.toggle('open', open);
-    menuOverlay.classList.toggle('open', open);
+  function openMenu() {
+    menuPanel.classList.add('open');
+    menuBtn.classList.add('open');
+    menuOverlay.classList.add('open');
   }
 
   function closeMenu() {
@@ -758,49 +761,102 @@
     menuOverlay.classList.remove('open');
   }
 
-  menuBtn.addEventListener('click', toggleMenu);
+  function toggleMenu() {
+    if (menuPanel.classList.contains('open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  }
+
+  // Wire up menu button
+  menuBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    toggleMenu();
+  });
+
+  // Wire up overlay
   menuOverlay.addEventListener('click', closeMenu);
 
+  // Wire up menu nav links
   menuLinks.forEach(function(a) {
     a.addEventListener('click', function(e) {
       e.preventDefault();
-      goTo(parseInt(a.dataset.page));
+      e.stopPropagation();
+      var pg = parseInt(a.getAttribute('data-page'));
+      goTo(pg);
     });
   });
 
-  dots.forEach(function(d) { d.addEventListener('click', function() { goTo(parseInt(d.dataset.p)); }); });
+  // Wire up nav dots
+  dots.forEach(function(d) {
+    d.addEventListener('click', function() {
+      goTo(parseInt(d.getAttribute('data-p')));
+    });
+  });
 
-  document.getElementById('btn-projects').addEventListener('click', function(e) { e.preventDefault(); goTo(3); });
-  document.getElementById('btn-contact').addEventListener('click', function(e) { e.preventDefault(); goTo(6); });
-  document.getElementById('a1n').addEventListener('click', function() { goTo(1); });
-  document.getElementById('a2p').addEventListener('click', function() { goTo(0); });
-  document.getElementById('a2n').addEventListener('click', function() { goTo(2); });
-  document.getElementById('a3p').addEventListener('click', function() { goTo(1); });
-  document.getElementById('a3n').addEventListener('click', function() { goTo(3); });
-  document.getElementById('a4p').addEventListener('click', function() { goTo(2); });
-  document.getElementById('a4n').addEventListener('click', function() { goTo(4); });
-  document.getElementById('a5p').addEventListener('click', function() { goTo(3); });
-  document.getElementById('a5n').addEventListener('click', function() { goTo(5); });
-  document.getElementById('a6p').addEventListener('click', function() { goTo(4); });
-  document.getElementById('a6n').addEventListener('click', function() { goTo(6); });
-  document.getElementById('a7p').addEventListener('click', function() { goTo(5); });
+  // Wire up CTA buttons on hero
+  var btnProjects = document.getElementById('btn-projects');
+  var btnContact = document.getElementById('btn-contact');
+  if (btnProjects) btnProjects.addEventListener('click', function(e) { e.preventDefault(); goTo(3); });
+  if (btnContact) btnContact.addEventListener('click', function(e) { e.preventDefault(); goTo(6); });
 
+  // Wire up all page arrow buttons
+  var arrowMap = {
+    'a1n': 1,
+    'a2p': 0, 'a2n': 2,
+    'a3p': 1, 'a3n': 3,
+    'a4p': 2, 'a4n': 4,
+    'a5p': 3, 'a5n': 5,
+    'a6p': 4, 'a6n': 6,
+    'a7p': 5
+  };
+  Object.keys(arrowMap).forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.addEventListener('click', function() { goTo(arrowMap[id]); });
+  });
+
+  // Sync current page on scroll
   var scrollTimer;
   wrap.addEventListener('scroll', function() {
     clearTimeout(scrollTimer);
     scrollTimer = setTimeout(function() {
       var n = Math.round(wrap.scrollLeft / window.innerWidth);
-      if (n !== cur) { cur = n; dots.forEach(function(d,i){d.classList.toggle('on',i===cur);}); menuLinks.forEach(function(a,i){a.classList.toggle('active',i===cur);}); revealPage(cur); }
+      if (n !== cur) {
+        cur = n;
+        dots.forEach(function(d, i) { d.classList.toggle('on', i === cur); });
+        menuLinks.forEach(function(a, i) { a.classList.toggle('active', i === cur); });
+        revealPage(cur);
+      }
     }, 80);
   });
 
+  // Keyboard navigation
   document.addEventListener('keydown', function(e) {
     if (e.key === 'ArrowRight') goTo(cur + 1);
     if (e.key === 'ArrowLeft') goTo(cur - 1);
     if (e.key === 'Escape') closeMenu();
   });
 
+  // Mouse drag to scroll
   var isDrag = false, startX, scrollL;
-  wrap.addEventListener('mousedown', function(e) { isDrag=true; startX=e.pageX-wrap.offsetLeft; scrollL=wrap.scrollLeft; });
-  wrap.addEventListener('mouseleave', function() { isDrag=false; });
-  wrap.addEventListener('
+  wrap.addEventListener('mousedown', function(e) {
+    isDrag = true;
+    startX = e.pageX - wrap.offsetLeft;
+    scrollL = wrap.scrollLeft;
+    wrap.style.cursor = 'grabbing';
+  });
+  wrap.addEventListener('mouseleave', function() { isDrag = false; wrap.style.cursor = 'grab'; });
+  wrap.addEventListener('mouseup', function() { isDrag = false; wrap.style.cursor = 'grab'; });
+  wrap.addEventListener('mousemove', function(e) {
+    if (!isDrag) return;
+    e.preventDefault();
+    wrap.scrollLeft = scrollL - (e.pageX - wrap.offsetLeft - startX) * 1.5;
+  });
+
+  // Reveal first page on load
+  revealPage(0);
+})();
+</script>
+</body>
+</html>
